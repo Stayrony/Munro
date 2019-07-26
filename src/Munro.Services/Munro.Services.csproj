@@ -14,4 +14,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Munro.Models\Munro.Models.csproj" />
+    <ProjectReference Include="..\Munro.Common\Munro.Common.csproj" />
+  </ItemGroup>
 </Project>

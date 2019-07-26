@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -12,4 +12,12 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Munro.Services\Munro.Services.csproj" />
+    <ProjectReference Include="..\..\src\Munro.Models\Munro.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers" />
+  </ItemGroup>
 </Project>
