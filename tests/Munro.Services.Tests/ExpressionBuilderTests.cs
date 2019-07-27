@@ -67,6 +67,27 @@ namespace Munro.Services.Tests
         }
 
         [Test]
+        public void ShouldReturnLessThanOrEqualOfHeightMetresMunros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var conditions = new List<Condition>
+            {
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres),
+                    Type = ConditionType.LessThanOrEqual, Values = new object[] {1000.0}
+                }
+            };
+
+            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+
+            var actual = Munros.Where(exp).ToList();
+
+            Assert.AreEqual(actual.Count, 3);
+        }
+        
+        [Test]
         public void ShouldReturnRangeOfHeightMetresMunros()
         {
             ExpressionBuilder expressionBuilder = new ExpressionBuilder();
@@ -127,6 +148,117 @@ namespace Munro.Services.Tests
             var actual = Munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 3);
+        }
+        
+        [Test]
+        public void ShouldReturnEqualHillCategoryMUN_And_RangeOfHeightMetres_Munros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var conditions = new List<Condition>
+            {
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HillCategory), Type = ConditionType.Equal,
+                    Values = new object[] { HillCategory.MUN }
+                },
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres), Type = ConditionType.Range,
+                    Values = new object[] {1000.0, 2000.0}
+                },
+                
+            };
+
+            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+
+            var actual = Munros.Where(exp).ToList();
+
+            Assert.AreEqual(actual.Count, 1);
+        }
+        
+        [Test]
+        public void ShouldReturnEqualHillCategoryMUN_And_EqualHillCategoryTOP_And_RangeOfHeightMetres_Munros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var conditions = new List<Condition>
+            {
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HillCategory), Type = ConditionType.Equal,
+                    Values = new object[] { HillCategory.MUN }
+                },
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HillCategory), Type = ConditionType.Equal,
+                    Values = new object[] { HillCategory.TOP }
+                },
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres), Type = ConditionType.Range,
+                    Values = new object[] {940.0, 2000.0}
+                },
+                
+            };
+
+            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+
+            var actual = Munros.Where(exp).ToList();
+
+            Assert.AreEqual(actual.Count, 3);
+        }
+        
+        [Test]
+        public void ShouldReturnLessThanOrEqualOfHeightMetres_And_EqualHillCategoryTOP_Munros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var conditions = new List<Condition>
+            {
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres),
+                    Type = ConditionType.LessThanOrEqual, Values = new object[] {1000.0}
+                },
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HillCategory), Type = ConditionType.Equal,
+                    Values = new object[] { HillCategory.TOP }
+                },
+            };
+
+            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+
+            var actual = Munros.Where(exp).ToList();
+
+            Assert.AreEqual(actual.Count, 1);
+        }
+        
+        [Test]
+        public void ShouldReturnLessThanOrEqualOfHeightMetres_And_EqualHillCategoryMUN_Munros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var conditions = new List<Condition>
+            {
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres),
+                    Type = ConditionType.LessThanOrEqual, Values = new object[] {900.0}
+                },
+                new Condition
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HillCategory), Type = ConditionType.Equal,
+                    Values = new object[] { HillCategory.TOP }
+                },
+            };
+
+            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+
+            var actual = Munros.Where(exp).ToList();
+
+            Assert.AreEqual(actual.Count, 0);
         }
     }
 }
