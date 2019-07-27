@@ -9,11 +9,8 @@ namespace Munro.Services.Services
 {
     public class ExpressionBuilder
     {
-        public ExpressionBuilder()
-        {
-        }
-
-        public Expression<Func<T, bool>> CreateExpression<T>(IEnumerable<Condition> query)
+        public Expression<Func<T, bool>> CreateConditionExpression<T>(
+            IEnumerable<Condition> query)
         {
             var groups = query.GroupBy(c => c.ColumnName);
 
@@ -64,6 +61,58 @@ namespace Munro.Services.Services
             }
 
             return Expression.Lambda<Func<T, bool>>(exp, param);
+        }
+
+        public IQueryable<T> OrderByColumns<T>(
+            IQueryable<T> collection,
+            IEnumerable<Sort> query)
+        {
+            bool firstTime = true;
+
+            var parameter = Expression.Parameter(typeof(T));
+
+            foreach (var column in query)
+            {
+                var property = Expression.Property(parameter, column.ColumnName);
+
+                // Build something like x => x.Name or x => x.HeightMetres
+                var exp = Expression.Lambda(property, parameter);
+
+                // Based on the sorting direction, get the right method
+                string method = String.Empty;
+                if (firstTime)
+                {
+                    method = column.Type == SortDirectionType.Ascending
+                        ? "OrderBy"
+                        : "OrderByDescending";
+
+                    firstTime = false;
+                }
+                else
+                {
+                    method = column.Type == SortDirectionType.Ascending
+                        ? "ThenBy"
+                        : "ThenByDescending";
+                }
+
+                // typeof(T) is the type of the T
+                // exp.Body.Type is the type of the property. Again, for Name, it's
+                //     a String. For HeightMetres, it's a Double.
+                Type[] types = new Type[] {typeof(T), exp.Body.Type};
+
+                // Build the call expression
+                // It will look something like:
+                //     OrderBy*(x => x.Name) or Order*(x => x.HeightMetres)
+                //     ThenBy*(x => x.Name) or ThenBy*(x => x.HeightMetres)
+
+                var mce = Expression.Call(typeof(Queryable), method, types,
+                    collection.Expression, exp);
+
+                // Now you can run the expression against the collection
+                collection = collection.Provider.CreateQuery<T>(mce);
+            }
+
+            return collection;
         }
     }
 }

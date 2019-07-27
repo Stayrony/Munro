@@ -59,7 +59,7 @@ namespace Munro.Services.Tests
                 }
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -80,7 +80,7 @@ namespace Munro.Services.Tests
                 }
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -101,7 +101,7 @@ namespace Munro.Services.Tests
                 },
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -122,7 +122,7 @@ namespace Munro.Services.Tests
                 },
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -143,7 +143,7 @@ namespace Munro.Services.Tests
                 },
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -170,7 +170,7 @@ namespace Munro.Services.Tests
                 
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -202,7 +202,7 @@ namespace Munro.Services.Tests
                 
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -228,7 +228,7 @@ namespace Munro.Services.Tests
                 },
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
@@ -254,11 +254,78 @@ namespace Munro.Services.Tests
                 },
             };
 
-            var exp = expressionBuilder.CreateExpression<Munro.Models.Models.Munro>(conditions);
+            var exp = expressionBuilder.CreateConditionExpression<Munro.Models.Models.Munro>(conditions);
 
             var actual = Munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 0);
+        }
+        
+        [Test]
+        public void ShouldReturnSortHeightMetres_Munros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var sorts = new List<Sort>
+            {
+                new Sort
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres),
+                    Type = SortDirectionType.Descending,
+                }
+            };
+
+            var actual = expressionBuilder.OrderByColumns(Munros, sorts);
+
+            Assert.That( actual, Is.Ordered.Descending.By("HeightMetres") );
+        }
+        
+        [Test]
+        public void ShouldReturnSortDescendingByHeightMetres_And_SortAscendingByName_Munros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var sorts = new List<Sort>
+            {
+                new Sort
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres),
+                    Type = SortDirectionType.Descending,
+                },
+                new Sort
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.Name),
+                    Type = SortDirectionType.Ascending,
+                }
+            };
+
+            var actual = expressionBuilder.OrderByColumns(Munros, sorts);
+
+            Assert.That( actual, Is.Ordered.Descending.By("HeightMetres").Then.Ascending.By("Name") );
+        }
+        
+        [Test]
+        public void ShouldReturnSortDescendingByHeightMetres_And_SortDescendingByName_Munros()
+        {
+            ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
+            var sorts = new List<Sort>
+            {
+                new Sort
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.HeightMetres),
+                    Type = SortDirectionType.Descending,
+                },
+                new Sort
+                {
+                    ColumnName = nameof(Munro.Models.Models.Munro.Name),
+                    Type = SortDirectionType.Descending,
+                }
+            };
+
+            var actual = expressionBuilder.OrderByColumns(Munros, sorts);
+
+            Assert.That( actual, Is.Ordered.Descending.By("HeightMetres").Then.Descending.By("Name") );
         }
     }
 }
