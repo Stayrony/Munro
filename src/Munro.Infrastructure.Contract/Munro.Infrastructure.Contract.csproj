@@ -15,12 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Munro.Infrastructure.Contract\Munro.Infrastructure.Contract.csproj" />
     <ProjectReference Include="..\Munro.Models\Munro.Models.csproj" />
-    <ProjectReference Include="..\Munro.Common\Munro.Common.csproj" />
-    <ProjectReference Include="..\Munro.Services.Contract\Munro.Services.Contract.csproj" />
   </ItemGroup>
+
 </Project>

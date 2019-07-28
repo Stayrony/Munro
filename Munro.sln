@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Web", "src\Munro.Web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Common", "src\Munro.Common\Munro.Common.csproj", "{F7414CCD-A859-4AE5-923A-8378159E6E59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Contract", "src\Munro.Contract\Munro.Contract.csproj", "{E2D36C8B-DAEC-42D7-8E66-AC0408CFB77A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Services.Contract", "src\Munro.Services.Contract\Munro.Services.Contract.csproj", "{E2D36C8B-DAEC-42D7-8E66-AC0408CFB77A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Models", "src\Munro.Models\Munro.Models.csproj", "{047C322F-5E37-471A-9EE7-FB729D09710A}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Infrastructure", "src\Munro.Infrastructure\Munro.Infrastructure.csproj", "{540090D9-4E27-4779-BB66-918A8B49C112}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Services.Tests", "tests\Munro.Services.Tests\Munro.Services.Tests.csproj", "{5744F348-8320-49B8-8CC1-829CDB045944}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munro.Infrastructure.Contract", "src\Munro.Infrastructure.Contract\Munro.Infrastructure.Contract.csproj", "{CBA32A64-592A-4F4F-B3CD-42E38B6ED5FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{5744F348-8320-49B8-8CC1-829CDB045944}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5744F348-8320-49B8-8CC1-829CDB045944}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5744F348-8320-49B8-8CC1-829CDB045944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBA32A64-592A-4F4F-B3CD-42E38B6ED5FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBA32A64-592A-4F4F-B3CD-42E38B6ED5FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBA32A64-592A-4F4F-B3CD-42E38B6ED5FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBA32A64-592A-4F4F-B3CD-42E38B6ED5FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A9187309-9128-4896-AD48-F171FFCA4DA6} = {EC7A8719-D9BD-41CD-87F0-C3D692DE672A}
@@ -62,5 +68,6 @@ Global
 		{B1FF9BA3-A7EF-4D57-9F57-F0A5069A5FEE} = {EC7A8719-D9BD-41CD-87F0-C3D692DE672A}
 		{540090D9-4E27-4779-BB66-918A8B49C112} = {EC7A8719-D9BD-41CD-87F0-C3D692DE672A}
 		{5744F348-8320-49B8-8CC1-829CDB045944} = {9FE84454-B0B4-4348-9600-5A398F868F97}
+		{CBA32A64-592A-4F4F-B3CD-42E38B6ED5FA} = {EC7A8719-D9BD-41CD-87F0-C3D692DE672A}
 	EndGlobalSection
 EndGlobal

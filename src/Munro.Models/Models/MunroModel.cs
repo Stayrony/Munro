@@ -1,9 +1,8 @@
-﻿using System;
-using Munro.Models.Enums;
+﻿using Munro.Models.Enums;
 
 namespace Munro.Models.Models
 {
-    public class Munro
+    public class MunroModel
     {
         public string Name {get; set; }
         public double HeightMetres { get; set; }
