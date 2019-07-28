@@ -27,7 +27,6 @@ namespace Munro.Infrastructure.Repositories
             
             _munros.AddRange(munroModels);
             return true;
-
         }
     }
 }
