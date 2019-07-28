@@ -6,5 +6,6 @@
         InternalServerError = 2,
         ValidationError = 3,
         ObjectMissing = 4,
+        UnsupportedFileExtension = 5
     }
 }

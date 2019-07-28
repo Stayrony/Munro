@@ -24,7 +24,7 @@ namespace Munro.Common.Invoke
             {
                 IsSuccess    = false,
                 Code         = resultCode,
-                Result       = default(T),
+                Result       = default,
                 Exception    = null,
                 ErrorMessage = null
             };
@@ -34,8 +34,9 @@ namespace Munro.Common.Invoke
             new InvokeResult<T>
             {
                 IsSuccess    = false,
-                Code         = ResultCode.ValidationError,
-                Result       = default(T),
+                Code         = resultCode,
+                Result       = default,
+                Exception    = null,
                 ErrorMessage = errorMessage
             };
 
@@ -45,11 +46,11 @@ namespace Munro.Common.Invoke
             {
                 IsSuccess    = false,
                 Code         = ResultCode.InternalServerError,
-                Result       = default(T),
+                Result       = default,
                 Exception    = ex,
                 ErrorMessage = null
             };
 
-        public static InvokeResult<T> Ok() => Ok(default(T));
+        public static InvokeResult<T> Ok() => Ok(default);
     }
 }

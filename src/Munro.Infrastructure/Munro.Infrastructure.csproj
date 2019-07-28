@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -19,5 +19,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Munro.Infrastructure.Contract\Munro.Infrastructure.Contract.csproj" />
+    <ProjectReference Include="..\Munro.Models\Munro.Models.csproj" />
   </ItemGroup>
 </Project>
