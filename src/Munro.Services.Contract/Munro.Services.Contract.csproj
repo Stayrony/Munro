@@ -17,4 +17,9 @@
   <ItemGroup>
     <Content Remove="Properties\launchSettings.json" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Munro.Common\Munro.Common.csproj" />
+    <ProjectReference Include="..\Munro.Models\Munro.Models.csproj" />
+  </ItemGroup>
 </Project>

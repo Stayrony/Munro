@@ -3,6 +3,6 @@
     public enum LogInvokeResult
     {
         Always,
-        IsFail,
+        IsFail
     }
 }

@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Munro.Common.Invoke;
+using Munro.Infrastructure.Contract.Repositories;
+using Munro.Infrastructure.Repositories;
+using Munro.Services;
+using Munro.Services.Contract;
+using Munro.Services.Contract.Helpers;
+using Munro.Services.Contract.Services;
+using Munro.Services.Helpers;
+using Munro.Services.Services;
 
 namespace Munro.Web
 {
@@ -25,6 +27,14 @@ namespace Munro.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(IInvokeHandler<>), typeof(BaseInvokeHandler<>));
+            services.AddSingleton<IInvokeResultSettings, InvokeResultSettings>();
+            services.AddTransient<IExpressionBuilder, ExpressionBuilder>();
+            services.AddSingleton<IMunrosRepository, MunrosRepository>();
+            services.AddTransient<IMunrosManager, MunrosManager>();
+            services.AddTransient<IMunroService, MunroService>();
+            services.AddTransient<IFileReaderService, FileReaderService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

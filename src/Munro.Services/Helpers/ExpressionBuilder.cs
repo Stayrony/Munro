@@ -4,10 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using Munro.Common.Enums;
 using Munro.Common.Models;
+using Munro.Services.Contract.Helpers;
 
-namespace Munro.Services.Services
+namespace Munro.Services.Helpers
 {
-    public class ExpressionBuilder
+    public class ExpressionBuilder : IExpressionBuilder
     {
         public Expression<Func<T, bool>> CreateConditionExpression<T>(
             IEnumerable<Condition> query)
@@ -98,7 +99,7 @@ namespace Munro.Services.Services
                 // typeof(T) is the type of the T
                 // exp.Body.Type is the type of the property. Again, for Name, it's
                 //     a String. For HeightMetres, it's a Double.
-                Type[] types = new Type[] {typeof(T), exp.Body.Type};
+                Type[] types = {typeof(T), exp.Body.Type};
 
                 // Build the call expression
                 // It will look something like:
