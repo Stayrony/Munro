@@ -19,7 +19,7 @@ namespace Munro.Services.Tests
         private readonly Mock<ILogger<MunroService>> _mockLogger;
         private readonly IInvokeHandler<MunroService> _invokeHandler;
         private readonly IExpressionBuilder _expressionBuilder;
-        private IQueryable<MunroModel> Munros;
+        private IQueryable<MunroModel> _munros;
         
         public MunroServiceTests()
         {
@@ -31,7 +31,7 @@ namespace Munro.Services.Tests
         [SetUp]
         public void Setup()
         {
-            Munros = new List<MunroModel>
+            _munros = new List<MunroModel>
             {
                 new MunroModel
                 {
@@ -88,7 +88,7 @@ namespace Munro.Services.Tests
                 }
             };
             
-            var result = munrosService.GetMunrosByQuery(Munros, conditions, null, null);
+            var result = munrosService.GetMunrosByQuery(_munros, conditions, null, null);
             
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Result);
@@ -119,7 +119,7 @@ namespace Munro.Services.Tests
                 }
             };
             
-            var result = munrosService.GetMunrosByQuery(Munros, conditions, sorts, null);
+            var result = munrosService.GetMunrosByQuery(_munros, conditions, sorts, null);
             
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Result);
@@ -156,7 +156,7 @@ namespace Munro.Services.Tests
                 }
             };
             
-            var result = munrosService.GetMunrosByQuery(Munros, conditions, sorts, null);
+            var result = munrosService.GetMunrosByQuery(_munros, conditions, sorts, null);
             
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Result);
@@ -193,7 +193,7 @@ namespace Munro.Services.Tests
                 }
             };
             
-            var result = munrosService.GetMunrosByQuery(Munros, conditions, sorts, null);
+            var result = munrosService.GetMunrosByQuery(_munros, conditions, sorts, null);
             
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Result);
@@ -240,7 +240,7 @@ namespace Munro.Services.Tests
                 }
             };
             
-            var result = munrosService.GetMunrosByQuery(Munros, conditions, sorts, null);
+            var result = munrosService.GetMunrosByQuery(_munros, conditions, sorts, null);
             
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Result);

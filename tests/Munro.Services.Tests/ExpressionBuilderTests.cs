@@ -11,12 +11,12 @@ namespace Munro.Services.Tests
 {
     public class ExpressionBuilderTests
     {
-        private IQueryable<MunroModel> Munros;
+        private IQueryable<MunroModel> _munros;
 
         [SetUp]
         public void Setup()
         {
-            Munros = new List<MunroModel>
+            _munros = new List<MunroModel>
             {
                 new MunroModel
                 {
@@ -62,7 +62,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 2);
         }
@@ -83,7 +83,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 3);
         }
@@ -104,7 +104,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 2);
         }
@@ -125,7 +125,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 2);
         }
@@ -151,7 +151,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 5);
         }
@@ -172,7 +172,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 3);
         }
@@ -199,7 +199,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 1);
         }
@@ -230,7 +230,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 3);
         }
@@ -256,7 +256,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 1);
         }
@@ -282,7 +282,7 @@ namespace Munro.Services.Tests
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
 
-            var actual = Munros.Where(exp).ToList();
+            var actual = _munros.Where(exp).ToList();
 
             Assert.AreEqual(actual.Count, 0);
         }
@@ -301,7 +301,7 @@ namespace Munro.Services.Tests
                 }
             };
 
-            var actual = expressionBuilder.OrderByColumns(Munros, sorts);
+            var actual = expressionBuilder.OrderByColumns(_munros, sorts);
 
             Assert.That( actual, Is.Ordered.Descending.By("HeightMetres") );
         }
@@ -325,7 +325,7 @@ namespace Munro.Services.Tests
                 }
             };
 
-            var actual = expressionBuilder.OrderByColumns(Munros, sorts);
+            var actual = expressionBuilder.OrderByColumns(_munros, sorts);
 
             Assert.That( actual, Is.Ordered.Descending.By("HeightMetres").Then.Ascending.By("Name") );
         }
@@ -349,7 +349,7 @@ namespace Munro.Services.Tests
                 }
             };
 
-            var actual = expressionBuilder.OrderByColumns(Munros, sorts);
+            var actual = expressionBuilder.OrderByColumns(_munros, sorts);
 
             Assert.That( actual, Is.Ordered.Descending.By("HeightMetres").Then.Descending.By("Name") );
         }
