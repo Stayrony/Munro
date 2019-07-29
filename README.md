@@ -18,3 +18,48 @@ order.
 minimum height)
 
 ## Usage
+
+```
+Upload File API:
+
+POST /api/Files/UploadFile? HTTP/1.1
+Host: localhost:5001
+Content-type: multipart/form-data; 
+
+Munros Query API:
+
+POST /api/Munros? HTTP/1.1
+Host: localhost:5001
+Content-Type: application/json
+
+Body example:
+
+{
+	"NameSortDirectionType" : 1,
+	"HeightSortDirectionType" : 2,
+	"HeightMaxMetres": 1000,
+	"HeightMinMetres" : 900,
+	"HillCategories" : [1, 2],
+	"Limit" : 10
+}
+
+where:
+
+ - NameSortDirectionType - sort the result by name in ascending or descending order. Can be:
+        Ascending = 1,
+        Descending = 2
+        
+ - HillCategories - filtering of search by hill category. Can be:
+        TOP = 1,
+        MUN = 2
+        
+ - HeightSortDirectionType - sort the results by height in meters in ascending or descending order. Can be:
+        Ascending = 1,
+        Descending = 2
+        
+ - HeightMaxMetres - specify a maximun height in meters
+ 
+ - HeightMinMetres - specify a minimum height in meters
+ 
+ - Limit - limit the total number of results returned.
+```
