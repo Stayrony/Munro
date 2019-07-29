@@ -54,7 +54,7 @@ namespace Munro.Services.Services
                     return InvokeResult<IEnumerable<MunroModel>>.Fail(ResultCode.ObjectMissing, "Munros list is empty!");
                 }
                 
-                IEnumerable<MunroModel> result = munros;
+                IEnumerable<MunroModel> sortMunros = munros;
                 IEnumerable<MunroModel> filterMunros = munros;
                 
                 if (conditions != null && conditions.Any())
@@ -66,19 +66,23 @@ namespace Munro.Services.Services
 
                 if (sorts != null && sorts.Any())
                 {
-                    result = _expressionBuilder.OrderByColumns(filterMunros.AsQueryable(), sorts);
+                    sortMunros = _expressionBuilder.OrderByColumns(filterMunros.AsQueryable(), sorts);
+                }
+                else
+                {
+                    sortMunros = filterMunros;
                 }
 
                 if (limit != null && limit > 0)
                 {
-                    result = result.Take(limit.Value).ToList();
+                    sortMunros = sortMunros.Take(limit.Value).ToList();
                 }
                 else
                 {
-                    result = result.ToList();
+                    sortMunros = sortMunros.ToList();
                 }
 
-                return InvokeResult<IEnumerable<MunroModel>>.Ok(result);
+                return InvokeResult<IEnumerable<MunroModel>>.Ok(sortMunros);
             });
     }
 }

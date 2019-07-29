@@ -226,7 +226,6 @@ namespace Munro.Services.Tests
                     ColumnName = nameof(MunroModel.HeightMetres), Type = ConditionType.Range,
                     Values = new object[] {940.0, 2000.0}
                 }
-                
             };
 
             var exp = expressionBuilder.CreateConditionExpression<MunroModel>(conditions);
@@ -289,7 +288,7 @@ namespace Munro.Services.Tests
         }
         
         [Test]
-        public void ShouldReturnSortHeightMetres_Munros()
+        public void ShouldReturnSortDescendingHeightMetres_Munros()
         {
             ExpressionBuilder expressionBuilder = new ExpressionBuilder();
 
