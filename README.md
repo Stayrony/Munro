@@ -63,3 +63,39 @@ where:
  
  - Limit - limit the total number of results returned.
 ```
+
+Possible result codes:
+
+```
+        Ok = 1,
+        InternalServerError = 2,
+        ValidationError = 3,
+        ObjectMissing = 4,
+        UnsupportedFileExtension = 5
+```
+
+Examples of requests:
+
+```
+	//Get all TOP Munros and show the top 10:
+	{
+		"HillCategories" : [1],
+		"Limit" : 10
+	}
+	
+	//Get Munros between 900 and 1000 metres and sort by name in descending order
+	{
+		"NameSortDirectionType" : 2,
+		"HeightSortDirectionType" : 2,
+		"HeightMaxMetres": 1000,
+		"HeightMinMetres" : 900,
+	}
+	
+	//Get Munros between 950 and 995 metres and sort by name in descending order then by height in meters in ascending order
+	{
+		"NameSortDirectionType" : 2,
+		"HeightSortDirectionType" : 1,
+		"HeightMaxMetres": 995,
+		"HeightMinMetres" : 950,
+	}
+```
