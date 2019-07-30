@@ -248,5 +248,67 @@ namespace Munro.Services.Tests
             Assert.AreEqual(result.Result.Count(), 3);
             Assert.That( result.Result, Is.Ordered.Descending.By("HeightMetres").Then.Ascending.By("Name") );
         }
+        
+        [Test]
+        public void ShouldReturnEqualHillCategoryMUN_And_EqualHillCategoryTOP_And_RangeOfHeightMetres_SortAscendingByName_And_Limit_Munros()
+        {
+            var munrosService = new MunroService(_invokeHandler, _expressionBuilder);
+            
+            var conditions = new List<Condition>
+            {
+                new Condition
+                {
+                    ColumnName = nameof(MunroModel.HillCategory), Type = ConditionType.Equal,
+                    Values = new object[] { HillCategory.MUN }
+                },
+                new Condition
+                {
+                    ColumnName = nameof(MunroModel.HillCategory), Type = ConditionType.Equal,
+                    Values = new object[] { HillCategory.TOP }
+                },
+                new Condition
+                {
+                    ColumnName = nameof(MunroModel.HeightMetres), Type = ConditionType.Range,
+                    Values = new object[] {940.0, 2000.0}
+                }
+            };
+            
+            var sorts = new List<Sort>
+            {
+                new Sort
+                {
+                    ColumnName = nameof(MunroModel.HeightMetres),
+                    Type = SortDirectionType.Descending
+                },
+                new Sort
+                {
+                    ColumnName = nameof(MunroModel.Name),
+                    Type = SortDirectionType.Ascending
+                }
+            };
+            
+            var result = munrosService.GetMunrosByQuery(_munros, conditions, sorts, 2);
+            
+            Assert.True(result.IsSuccess);
+            Assert.NotNull(result.Result);
+            Assert.IsNotEmpty(result.Result);
+            Assert.AreEqual(result.Result.Count(), 2);
+            Assert.That( result.Result, Is.Ordered.Descending.By("HeightMetres").Then.Ascending.By("Name") );
+        }
+        
+        [TestCase(1)]
+        [TestCase(5)]
+        [TestCase(3)]
+        public void ShouldReturn_Limit_Munros(int limit)
+        {
+            var munrosService = new MunroService(_invokeHandler, _expressionBuilder);
+            
+            var result = munrosService.GetMunrosByQuery(_munros, null, null, limit);
+            
+            Assert.True(result.IsSuccess);
+            Assert.NotNull(result.Result);
+            Assert.IsNotEmpty(result.Result);
+            Assert.AreEqual(result.Result.Count(), limit);
+        }
     }
 }
