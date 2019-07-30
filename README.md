@@ -19,6 +19,14 @@ minimum height)
 
 ## Usage
 
+### The Structure of a CSV File
+A CSV file has a fairly simple structure. It’s a list of data separated by commas.
+You’d upload a file containing text like this:
+
+```
+Running No,DoBIH Number,Streetmap,Geograph,Hill-bagging,Name,SMC Section,RHB Section,_Section,Height (m),Height (ft),Map 1:50,Map 1:25,Grid Ref,GridRefXY,xcoord,ycoord,1891,1921,1933,1953,1969,1974,1981,1984,1990,1997,Post 1997,Comments
+```
+
 ```
 Upload File API:
 
@@ -64,7 +72,7 @@ where:
  - Limit - limit the total number of results returned.
 ```
 
-Possible result codes:
+### Possible result codes:
 
 ```
         Ok = 1,
@@ -74,7 +82,7 @@ Possible result codes:
         UnsupportedFileExtension = 5
 ```
 
-Examples of requests:
+### Examples of requests:
 
 ```
 	//Get all TOP Munros and show the top 10:
